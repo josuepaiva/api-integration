@@ -1,3 +1,3 @@
 export interface IRequestProvider {
-    get(url:string): Promise<void>;
+  get(url:string): Promise<void>;
 }
