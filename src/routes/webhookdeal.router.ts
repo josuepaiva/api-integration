@@ -3,7 +3,7 @@ import { dealUpdateNotificationsController } from '../useCases/webhookDealUpdate
 
 const router = Router();
 
-router.post('/added', (req, res) => {
+router.post('/updated', (req, res) => {
   return dealUpdateNotificationsController.handle(req,res);
 });
 
