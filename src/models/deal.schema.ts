@@ -1,28 +1,50 @@
-import mongoose from 'mongoose';
+import mongoose , { Schema, Document, Model } from 'mongoose';
 
-export interface DealInput {
+export type DealAttributes = {
   data: Date;
   valor: number;
-}
+  id_deal: number,
+  company_id: number,
+  status: String,
+  products_count: number,
+  title: String,
+};
 
-export interface DealDocument extends DealInput, mongoose.Document {
-  data: Date;
-  valor: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
+export type DealDocument = Document & DealAttributes;
 
-const dealSchema = new mongoose.Schema({
+type DealModel = Model<DealDocument>;
+
+const dealSchema = new Schema({
   data: {
     type: Date,
+    required: true,
+  },
+  title: {
+    type: String,
     required: true,
   },
   valor: {
     type: Number,
     required: true,
+  },
+  id_deal: {
+    type: Number,
+    required: true,
+  },
+  company_id: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
+    required: true
+  },
+  products_count: {
+    type: Number,
+    required: true
   }
 });
 
 dealSchema.index({ data: 1});
 
-export default mongoose.model<DealDocument>('DealSchema', dealSchema);
+export default mongoose.model<DealDocument, DealModel>('Deal', dealSchema);

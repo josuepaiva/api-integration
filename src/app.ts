@@ -1,9 +1,14 @@
 import express  from 'express';
-import { router } from './routes/test.router';
+import mongoose from 'mongoose';
+import routerWebhookdeal from './routes/webhookdeal.router';
+
+import dotenv from 'dotenv';
+dotenv.config();
+mongoose.connect(process.env.DB_URL);
 
 const app =  express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/test', router);
+app.use('/webhookdeal', routerWebhookdeal);
 
 export { app };

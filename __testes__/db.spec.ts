@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import DealSchema from '../src/models/deal.schema';
+import Deal from '../src/models/deal.schema';
 
 describe('Test database', () => {
   beforeAll(async () => {
@@ -12,16 +12,17 @@ describe('Test database', () => {
   });
 
   afterAll(async () => {
-    DealSchema.deleteMany();
+    Deal.deleteMany();
     mongoose.disconnect()
   });
 
   it('Insere um negócio no banco de dados', async () => {
 
-    const created = await DealSchema.create({ data: new Date(), valor: 20 });
+    const created = await Deal.create({ data: new Date(), valor: 20, products_count: 2, id_deal: 2, company_id: 2, status: 'won', title: 'Negocio1'});
     expect(created).toEqual(
       expect.objectContaining({
         valor: 20,
+
       })
     );
   });
