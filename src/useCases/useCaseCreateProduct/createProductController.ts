@@ -4,28 +4,27 @@ import { CreateProduct } from "./createProduct";
 
 export class CreateProductController {
   constructor(
-    private createProductController: CreateProduct,
+    private createProduct: CreateProduct,
   ){}
 
   async handle(req: Request, res: Response): Promise<Response>{
     console.log("product added");
-    console.log(req.body);
-    // if (req.body.current.status == 'won') {
-    //   const dealDTO: ProductDTO = {
-    //     data: new Date(),
-    //     valor: req.body.current.value,
-    //     id_deal: req.body.meta.id,
-    //     products_count: req.body.current.products_count,
-    //     company_id: req.body.meta.company_id,
-    //     status: req.body.current.status,
-    //     title: req.body.current.title
-    //   };
+    const productDTO: ProductDTO = {
+      descricao: req.body.current.name,
+      codigo: req.body.current.code,
+      preco: req.body.current.prices[0].price,
+    };
 
-      // const created = await this.createProductController.execute(dealDTO);
-      return res.status(201).json({success: true});
-    // }else {
-    //   return res.status(200).send('nada adicionado');
-    // }
+    console.log('entrada ', productDTO);
+
+    try{
+      const { data } = await this.createProduct.execute(productDTO);
+      console.log(data.retorno.erros);
+      return res.status(201).json(data.retorno);
+    } catch({ message }){
+      console.log(message)
+      return res.status(200).json({success: false, message});
+    }
 
   }
 }
