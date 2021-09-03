@@ -2,11 +2,6 @@
 
 Faz uma integração do Pipedrive com o Blig tornando possível fechar negócios no Pipedrive e passando esses pedidos ao Bling.
 
-## Dependencias do projeto
-1. [Mongodb:latest](https://hub.docker.com/_/mongo)
-2. [Redis:latest](https://hub.docker.com/_/redis)
-3. [Micro serviço media](https://gitlab.vendaecia.com/api-v3/media)
-
 ## Sincronização de dados Pipedrive/Bling
 
 A sincronização dos dados foi implementada de forma reativa com uso de webhooks e logo por conta disso é necessário criar dois webhooks na conta teste do Pipedrive. Abaixo é mostrado o formato
@@ -74,11 +69,18 @@ dos webhooks do Pipedrive
   ```
 4. Rodar o serviço
   ```
-  npm run dev ou npm start
+  yarn start
   ```
 5. Testes
   ```
-  npm test
+  yarn test
   ```
 6. Para acessar o serviço `http://localhost:${PORT_SERVER}`.
+
+## API Rotas ##
+
+### Deals ###
+|   Açao                                    |  Método   | URL
+| ------------------------------------------|-----------|-------------------------------------------
+|   Lista negocios consolidadas             |   `GET`   | /api/deals
 
