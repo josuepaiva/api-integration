@@ -82,5 +82,5 @@ dos webhooks do Pipedrive
 ### Deals ###
 |   Açao                                    |  Método   | URL
 | ------------------------------------------|-----------|-------------------------------------------
-|   Lista negocios consolidadas             |   `GET`   | /api/deals
+|   Lista negocios consolidadas             |   `GET`   | /deals
 

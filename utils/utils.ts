@@ -5,7 +5,6 @@ export default {
     if (!process.env.MONGO_URL) {
       throw new Error('Mongodb server is not initialized');
     }
-
     await mongoose.connect(process.env.MONGO_URL);
   },
   final: async () => {

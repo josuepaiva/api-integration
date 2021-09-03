@@ -2,8 +2,9 @@ import express  from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 
-import routerWebhookDeal from './routes/webhookdeal.router';
-import routerWebHookProduct from './routes/webhookproduct.router';
+import routerWebhookDeal from './routes/webhookDeal.router';
+import routerWebHookProduct from './routes/webhookProduct.router';
+import routerDeals from './routes/dealsConsolidated.router';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -15,5 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/notificationdeal', routerWebhookDeal);
 app.use('/notificationproduct', routerWebHookProduct);
+app.use('/deals', routerDeals);
 
 export { app };
