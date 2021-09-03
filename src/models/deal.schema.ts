@@ -1,7 +1,7 @@
 import mongoose , { Schema, Document, Model } from 'mongoose';
 
 export type DealAttributes = {
-  data: Date;
+  date: Date;
   valor: number;
   id_deal: number,
   company_id: number,
@@ -15,7 +15,7 @@ export type DealDocument = Document & DealAttributes;
 type DealModel = Model<DealDocument>;
 
 const dealSchema = new Schema({
-  data: {
+  date: {
     type: Date,
     required: true,
   },
@@ -45,6 +45,6 @@ const dealSchema = new Schema({
   }
 });
 
-dealSchema.index({ data: 1});
+dealSchema.index({ date: 1});
 
 export default mongoose.model<DealDocument, DealModel>('Deal', dealSchema);

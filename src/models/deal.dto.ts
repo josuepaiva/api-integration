@@ -1,5 +1,5 @@
 export interface DealDTO {
-  data: Date,
+  date: Date,
   valor: number,
   id_deal: number,
   company_id: number,
