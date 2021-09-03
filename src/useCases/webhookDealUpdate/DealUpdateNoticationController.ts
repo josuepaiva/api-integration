@@ -8,8 +8,11 @@ export class DealUpdateNotificationsController {
   ){}
 
   async handle(req: Request, res: Response): Promise<Response>{
-    console.log("req added");
+
     if (req.body.current.status == 'won') {
+      console.log('estatus atual ',req.body.current.status);
+      // console.log("req update deal");
+      // console.log(req.body);
       const dealDTO: DealDTO = {
         data: new Date(),
         valor: req.body.current.value,
@@ -21,10 +24,11 @@ export class DealUpdateNotificationsController {
       };
 
       const created = await this.dealUpdateNotification.execute(dealDTO);
-
-      return res.status(201).json(created);
+      if (created)
+        return res.status(201).json({ success: true, data: created});
+      return res.status(500).json({ success: false, data: null});
     }else {
-      return res.status(200).send('nada adicionado');
+      return res.status(202).json({ success: true, data: null});
     }
 
   }

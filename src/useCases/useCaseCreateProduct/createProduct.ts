@@ -13,12 +13,14 @@ export class CreateProduct {
       descricao: productDTO.descricao,
       preco: productDTO.preco
     };
+    const path:String = 'produto';
 
     const xmldata = builder.buildObject(xmlObj);
     const blingApiKey = process.env.APIKEY_BLING;
+    const blingLink = process.env.URL_API_BLING;
     const xml = encodeURI(xmldata)
     console.log('xml', xml);
     // `${bling_api_url}/produto/json/?apikey=${blingApiKey}&xml=${xml}`
-     return await axios.post(`https://bling.com.br/Api/v2/produto/json/?apikey=${blingApiKey}&xml=${xml}`);
+     return await axios.post(`${blingLink}${path}/json/?apikey=${blingApiKey}&xml=${xml}`);
   }
 }

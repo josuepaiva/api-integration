@@ -15,12 +15,13 @@ export class CreateProductController {
       preco: req.body.current.prices[0].price,
     };
 
-    console.log('entrada ', productDTO);
-
     try{
       const { data } = await this.createProduct.execute(productDTO);
-      console.log(data.retorno.erros);
-      return res.status(201).json(data.retorno);
+      if (data.retorno.erros){
+        console.log('erro ao adicionar produto');
+        return res.status(200).json({success: false, message: 'erro ao adicionar produto'});
+      }
+      return res.status(201).json({sucesss: true, data: data.retorno});
     } catch({ message }){
       console.log(message)
       return res.status(200).json({success: false, message});
