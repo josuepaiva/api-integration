@@ -9,6 +9,18 @@ export class MongoDealsRepository implements IDealsRepository {
         $group: {
           _id: '$date',
           total: { $sum: '$valor'},
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          date: {
+            $dateToString: {
+              format: '%d-%m-%Y',
+              date: '$_id'
+            }
+          },
+          total: 1
         }
       }
     ]);
